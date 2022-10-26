@@ -1,4 +1,4 @@
-# TEST THE CONNECTION TO POSTGRESQL SERVER ON LOCALHOST
+# GET COLUMN NAMES FROM A TABLE
 
 # LIBRARIES AND MODULES
 import psycopg2  # For PostgreSQL
@@ -18,13 +18,29 @@ try:
     
     # Create a cursor to execute commands and retrieve result set
     cursor = dbaseconnection.cursor()
-    cursor.execute("SELECT version();") # Executes version function on PG server and store result on cursor
-    version_number = cursor.fetchone() # Read result from cursor (1 row)
-    print("PostgreSQL:n versionumero on ", version_number) 
+    
+    # Execute a SQL command to get hunters (jasen)
+    command = "SELECT * FROM public.jasen;"
+    cursor.execute(command)
+
+    # Get number of rows in the result set
+    rows = cursor.rowcount
+    print("Tulosjoukossa on", rows, "riviä")
+
+    # Get column names from cursor
+    column_name = [column_name[0] for column_name in cursor.description]
+    print("Sarakeiden nimet ovat:", column_name)
+    for column in column_name:
+        print(column)
+
+    print("Sarakeluettelo päättyi")
+
+    result_set = cursor.fetchall()
+    print("Jäsentiedot ovat:", result_set)
 
 # Throw an error if connection or cursor creation fails                                     
-except(Exception, psycopg2.Error) as error:
-    print("Tietokantayhteydessä tapahtui virhe", error)
+except(Exception, psycopg2.Error) as e:
+    print("Tietokantayhteydessä tapahtui virhe", e)
 
 # If or if not successfull close the cursor and the connection   
 finally:
