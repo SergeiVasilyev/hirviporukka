@@ -1,1 +1,2 @@
-# hirviporukka
+# hirvigui
+Esimerkki PyQt-pohjaisesta käyttöliitymästi metsästystietokantaan
