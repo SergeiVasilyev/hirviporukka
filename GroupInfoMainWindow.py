@@ -5,7 +5,71 @@
 # ---------------------
 
 import sys
-from PyQt5 import *
+import psycopg2
+from PyQt5.QtWidgets import *
+from PyQt5.uic import loadUi
+
+# CLASS DEFINITIONS FOR THE APP
+# -----------------------------
+
+class GroupMainWindow(QMainWindow):
+
+    # Constructor, a method for creating objects from this class
+    def __init__(self, arg):
+        QMainWindow.__init__(self)
+
+        # Create an UI from the ui file
+        loadUi('GroupInfoMainWindow.ui', self)
+
+        # Define properties for ui elements
+        self.refreshBtn = self.refreshPushButton
+        self.groupInfo = self.groupSummaryTableWidget
+        self.sharedMeatInfo = self.meatSharedTableWidget
+
+        # Database connection params
+        self.database = "metsastys"
+        self.username = "sovellus"
+        self.userPassword = "Q2werty"
+        self.server = "127.0.0.1"
+        self.port = "5432"
+
+        # Signals
+
+        # Emit a signal when refresh push button is pressed
+        self.refreshBtn.clicked.connect(self.refreshData)
+    
+    # SLOTS
+    # Load data to table Widgets
+    # Try to establish a connection to DB server
+    def refreshData(self):
+
+        # To avoid Fatal error crashing the app uses try-except-finaly structure
+        try:
+            # Create a connection object
+            dbaseconnection = psycopg2.connect(database=self.database, user=self.user, password=self.password,
+                                            host=self.host, port=self.port)
+            
+            # Create a cursor to execute commands and retrieve result set
+            cursor = dbaseconnection.cursor()
+            
+            # Execute a SQL command to get hunters (jasen)
+            command = "SELECT * FROM public.jasen;"
+            cursor.execute(command)
+            result_set = cursor.fetchall()
+            print("Jäsentiedot ovat:", result_set)
+
+        # Throw an error if connection or cursor creation fails                                     
+        except(Exception, psycopg2.Error) as e:
+            print("Tietokantayhteydessä tapahtui virhe", e)
+
+        # If or if not successfull close the cursor and the connection   
+        finally:
+            if dbaseconnection:
+                cursor.close()
+                dbaseconnection.close()
+                print("Yhteys tietokantaan katkaistiin")
+
+
 
 
 
