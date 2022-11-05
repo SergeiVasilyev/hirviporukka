@@ -15,7 +15,7 @@ from PyQt5.uic import loadUi
 class GroupMainWindow(QMainWindow):
 
     # Constructor, a method for creating objects from this class
-    def __init__(self, arg):
+    def __init__(self):
         QMainWindow.__init__(self)
 
         # Create an UI from the ui file
@@ -46,14 +46,14 @@ class GroupMainWindow(QMainWindow):
         # To avoid Fatal error crashing the app uses try-except-finaly structure
         try:
             # Create a connection object
-            dbaseconnection = psycopg2.connect(database=self.database, user=self.user, password=self.password,
-                                            host=self.host, port=self.port)
+            dbaseconnection = psycopg2.connect(database=self.database, user=self.username, password=self.userPassword,
+                                            host=self.server, port=self.port)
             
             # Create a cursor to execute commands and retrieve result set
             cursor = dbaseconnection.cursor()
             
             # Execute a SQL command to get hunters (jasen)
-            command = "SELECT * FROM public.jasen;"
+            command = "SELECT * FROM public.jaetut_lihat;"
             cursor.execute(command)
             result_set = cursor.fetchall()
             print("Jäsentiedot ovat:", result_set)
@@ -69,8 +69,19 @@ class GroupMainWindow(QMainWindow):
                 dbaseconnection.close()
                 print("Yhteys tietokantaan katkaistiin")
 
+# APPLICATION CREATION AND STARTING
+# ---------------------------------
 
+if __name__ == "__main__":
 
+    # Create an application object
+    app = QApplication(sys.argv)
+    # app.setStyle('Fusion')
+
+    # Create the Main Window object from FormWithTable Class and show it on the screen
+    appWindow = GroupMainWindow()
+    appWindow.show() # Show method can also be used in the FormWithTable class
+    sys.exit(app.exec_())
 
 
 
