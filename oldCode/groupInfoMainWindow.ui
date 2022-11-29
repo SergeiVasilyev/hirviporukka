@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>727</width>
-    <height>723</height>
+    <width>400</width>
+    <height>476</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,9 +17,9 @@
    <widget class="QTableWidget" name="meatSharedTableWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>40</x>
       <y>40</y>
-      <width>331</width>
+      <width>321</width>
       <height>151</height>
      </rect>
     </property>
@@ -40,9 +40,9 @@
    <widget class="QTableWidget" name="groupSummaryTableWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>250</y>
-      <width>331</width>
+      <x>40</x>
+      <y>240</y>
+      <width>321</width>
       <height>151</height>
      </rect>
     </property>
@@ -63,9 +63,22 @@
    <widget class="QLabel" name="meatSharedLabel">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>40</x>
+      <y>220</y>
+      <width>131</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Jakoryhmien yhteenveto</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="meatSharedLabel_2">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
       <y>20</y>
-      <width>331</width>
+      <width>131</width>
       <height>16</height>
      </rect>
     </property>
@@ -73,24 +86,11 @@
      <string>Jaetut lihat</string>
     </property>
    </widget>
-   <widget class="QLabel" name="groupSummaryLabel">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>230</y>
-      <width>331</width>
-      <height>10</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Jakoryhmien yhteenveto</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="refreshPushButton">
     <property name="geometry">
      <rect>
-      <x>277</x>
-      <y>9</y>
+      <x>290</x>
+      <y>10</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -105,7 +105,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>727</width>
+     <width>400</width>
      <height>21</height>
     </rect>
    </property>
